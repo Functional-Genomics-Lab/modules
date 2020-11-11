@@ -1,7 +1,15 @@
 # ![nf-core/modules](docs/images/nfcore-modules_logo.png)
 
+[![Nextflow](https://img.shields.io/badge/nextflow-DSL2-23aa62.svg?labelColor=000000)](https://www.nextflow.io/)
+[![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
+[![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
+[![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
+
 ![GitHub Actions Coda Linting](https://github.com/nf-core/modules/workflows/Code%20Linting/badge.svg)
-[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23modules-4A154B?logo=slack)](https://nfcore.slack.com/channels/modules)
+[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23modules-4A154B?labelColor=000000&logo=slack)](https://nfcore.slack.com/channels/modules)
+
+[![Follow on Twitter](http://img.shields.io/badge/twitter-%40nf__core-1DA1F2?labelColor=000000&logo=twitter)](https://twitter.com/nf_core)
+[![Watch on YouTube](http://img.shields.io/badge/youtube-nf--core-FF0000?labelColor=000000&logo=youtube)](https://www.youtube.com/c/nf-core)
 
 > THIS REPOSITORY IS UNDER ACTIVE DEVELOPMENT. SYNTAX, ORGANISATION AND LAYOUT MAY CHANGE WITHOUT NOTICE!
 
@@ -80,7 +88,7 @@ We have written a helper command in the `nf-core/tools` package that uses the Gi
 
     nextflow.enable.dsl = 2
 
-    include { FASTQC } from './modules/nf-core/software/fastqc/main'
+    include { FASTQC } from './modules/nf-core/software/fastqc/main' addParams( options: [:] )
     ```
 
 5. We have plans to add other utility commands to help developers install and maintain modules downloaded from this repository so watch this space!
@@ -170,7 +178,7 @@ using a combination of `bwa` and `samtools` to output a BAM file instead of a SA
 
 - A module file SHOULD only define input and output files as command-line parameters to be executed within the process.
 
-- All other parameters MUST be provided as a string i.e. `options.args` where `options` is a Groovy Map that MUST be provided in the `input` section of the process.
+- All other parameters MUST be provided as a string i.e. `options.args` where `options` is a Groovy Map that MUST be provided via the Nextflow `addParams` option when including the module via `include` in the parent workflow.
 
 - If the tool supports multi-threading then you MUST provide the appropriate parameter using the Nextflow `task` variable e.g. `--threads $task.cpus`.
 
@@ -207,7 +215,7 @@ The [Nextflow `publishDir`](https://www.nextflow.io/docs/latest/process.html#pub
 ```nextflow
     publishDir "${params.outdir}",
         mode: params.publish_dir_mode,
-        saveAs: { filename -> saveFiles(filename:filename, options:options, publish_dir:getSoftwareName(task.process), publish_id:meta.id) }
+        saveAs: { filename -> saveFiles(filename:filename, options:params.options, publish_dir:getSoftwareName(task.process), publish_id:meta.id) }
 ```
 
 The `saveFiles` function can be found in the [`functions.nf`](software/fastqc/functions.nf) file of utility functions that will be copied into all module directories. It uses the various publishing `options` specified as input to the module to construct and append the relevant output path to `params.outdir`.
