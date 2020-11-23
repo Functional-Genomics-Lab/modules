@@ -10,6 +10,8 @@ library(GenomicFeatures)
 library(org.Hs.eg.db)
 library(edgeR)
 library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+library(optparse)
+library(GenomicAlignments)
 
 option_list <- list(
     make_option(c("-i", "--bam_files"    ), type="character", default=NULL    , metavar="path"   , help="Time course of GRO SEQ data in bam files."),
@@ -20,11 +22,13 @@ option_list <- list(
 
 opt_parser <- OptionParser(option_list=option_list)
 opt        <- parse_args(opt_parser)
-
+print(opt$bam_files)
 if (is.null(opt$bam_files)){
     print_help(opt_parser)
     stop("Please provide bam files", call.=FALSE)
+
 }
+
 # Read in bam file.
 
 if (file.exists(opt$outdir) == FALSE) {
@@ -33,7 +37,7 @@ if (file.exists(opt$outdir) == FALSE) {
 setwd(opt$outdir)
 
 # Begin use of groHMM -> CURRENTLY ONLY TAKES ONE FILE
-readsfile <- as(readGAlignments(file = opt$count_file, header = TRUE), "GRanges")
+readsfile <- as(GenomicAlignments::readGAlignments(file = opt$bam_files, use.names = TRUE))
 # Generate wig files
 writeWiggle(reads= readsfile, file = paste(opt$outprefix, ".fwd.wig"), strand = "+", reverse = FALSE)
 writeWiggle(reads= readsfile, file = paste(opt$outprefix, ".fwd.wig"), strand = "-", reverse = TRUE)
