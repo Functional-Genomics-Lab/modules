@@ -1,0 +1,23 @@
+- name: Run preseq single-end lcextrap
+  command: nextflow run ./tests/software/preseq -profile docker -entry test_preseq_single_end -c tests/config/nextflow.config
+  tags:
+    - preseq
+    - preseq_lcextrap
+
+  files:
+    - path: output/test_preseq_single_end/test.ccurve.txt
+    - path: output/test_preseq_single_end/test.log
+      md5sum: a9c8a28d1aac362df5973ba2d9923f86
+"""
+- name: Run preseq paired-end lcextrap
+  command: nextflow run ./tests/software/preseq -profile docker -entry test_preseq_paired_end -c tests/config/nextflow.config
+  tags:
+    - preseq
+    - preseq_lcextrap
+
+  files:
+    - path: output/test_preseq_paired_end/test.ccurve.txt
+    - path: output/test_preseq_paired_end/test.log
+      md5sum: a9c8a28d1aac362df5973ba2d9923f86
+"""
+
