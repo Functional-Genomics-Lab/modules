@@ -2,7 +2,7 @@
 
 nextflow.enable.dsl = 2
 
-include { PRESEQ_LCEXTRAP as PRESEQ_LCEXTRAP_SE } from '../../../software/preseq/lcextrap/main.nf' addParams( options: [ publish_dir:'test_single_end' ] )
+include { PRESEQ_LCEXTRAP as PRESEQ_LCEXTRAP_SE } from '../../../software/preseq/lcextrap/main.nf' addParams( options: [ publish_dir:'test_preseq_single_end' ] )
 //include { PRESEQ_LCEXTRAP as PRESEQ_LCEXTRAP_PE } from '../../../software/preseq/lcextrap/main.nf' addParams( options: [ publish_dir:'test_paired_end' ] )
 
 /*
