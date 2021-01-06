@@ -1,0 +1,16 @@
+- name: Run sortmerna single-end test workflow
+  command: nextflow run ./tests/software/sortmerna/ -profile docker -entry test_sortmerna_single_end -c tests/config/nextflow.config
+  tags:
+    - sortmerna
+  files:
+    - path: output/test_sortmerna_single_end/test.fastq.gz
+    - path: output/test_sortmerna_single_end/test.log
+
+- name: Run sortmerna paired-end test workflow
+  command: nextflow run ./tests/software/sortmerna/ -profile docker -entry test_sortmerna_paired_end -c tests/config/nextflow.config
+  tags:
+    - sortmerna
+  files:
+    - path: output/test_sortmerna_paired_end/test.fastq.gz
+    - path: output/test_sortmerna_paired_end/test.log
+
