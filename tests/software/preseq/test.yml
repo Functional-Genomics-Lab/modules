@@ -6,7 +6,7 @@
 
   files:
     - path: output/test_preseq_single_end/test.ccurve.txt
-    - path: output/test_preseq_single_end/test.log
+    - path: output/test_preseq_single_end/test.command.log
       md5sum: d41d8cd98f00b204e9800998ecf8427e
 
 #- name: Run preseq paired-end lcextrap
