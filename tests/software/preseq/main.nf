@@ -13,7 +13,7 @@ workflow test_preseq_single_end {
 
     def input = []
     input = [ [ id:'test', single_end:true ], // meta map
-              [ file("${launchDir}/tests/data/bam/SRR1106616_5M_subset.bam", checkIfExists: true), ] ]
+              [ file('https://github.com/smithlabcode/preseq/raw/master/data/SRR1106616_5M_subset.bam', checkIfExists: true), ] ]
 
     PRESEQ_LCEXTRAP_SE ( input )
 }
