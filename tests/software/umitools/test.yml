@@ -1,0 +1,36 @@
+- name: Run umitools dedup test workflow
+  command: nextflow run ./tests/software/umitools/ -profile docker -entry test_umitools_dedup -c tests/config/nextflow.config
+  tags:
+    - umitools
+    - umitools_dedup
+  files:
+    - path: output/umitools/test.bam
+      md5sum: 1f3c364f1eddaa3a8c11d8851fef423f
+    - path: output/umitools/test_per_umi.tsv
+      md5sum: 50f0cf23bace9109b3926b6d2294193a
+    - path: output/umitools/test_per_umi_per_position
+      md5sum: b5a7c341cf7c4e0f0c45b77ffd527ae0
+    - path: output/umitools/test_edit_distance.tsv
+      md5sum: 20c9ae3c4c91198690b62471cff24b50
+
+- name: Run umitools extract single-end test workflow
+  command: nextflow run ./tests/software/umitools/ -profile docker -entry test_umitools_extract_single_end -c tests/config/nextflow.config
+  tags:
+   - umitools
+   - umitools_extract
+  files:
+    - path: output/test_umitools_single_end/test.umi_extract.fastq.gz
+      md5sum: 601229ec2516ffbb946aca02a788661b
+    - path: output/test_umitools_single_end/test.umi_extract.log
+
+
+
+- name: Run umitools extract paired-end test workflow
+  command: nextflow run ./tests/software/umitools/ -profile docker -entry test_umitools_extract_paired_end -c tests/config/nextflow.config
+  tags:
+   - umitools
+   - umitools_extract
+  files:
+    - path: output/test_umitools_paired_end/test.umi_extract.fastq.gz
+      md5sum: 601229ec2516ffbb946aca02a788661b
+    - path: output/test_umitools_single_end/test.umi_extract.log
