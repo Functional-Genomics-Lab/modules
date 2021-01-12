@@ -30,7 +30,8 @@ workflow test_umitools_extract_single_end {
 workflow test_umitools_extract_paired_end {
     def input = []
     input = [ [ id:'test', single_end:false ], // meta map
-              file("${launchDir}/tests/data/fastq/rna/test_R1.fastq.gz", checkIfExists: true) ]
-    UMITOOLS_EXTRACT_PE ( input,
-                          file("${launchDir}/tests/data/fastq/rna/test_R2.fastq.gz", checkIfExists: true) )
+              [file("${launchDir}/tests/data/fastq/rna/test_R1.fastq.gz", checkIfExists: true),
+              file("${launchDir}/tests/data/fastq/rna/test_R2.fastq.gz", checkIfExists: true)]]
+    UMITOOLS_EXTRACT_PE ( input )
 }
+
