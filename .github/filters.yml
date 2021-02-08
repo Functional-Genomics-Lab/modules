@@ -80,6 +80,11 @@ homer_annotatepeaks:
   - software/homer/annotatepeaks/**
   - tests/homer/annotatepeaks/**
 
+homer_findpeaks:
+  - software/homer/maketagdirectory/**
+  - software/homer/findpeaks/**
+  - tests/homer/findpeaks/**
+
 homer_maketagdirectory:
   - software/homer/maketagdirectory/**
   - tests/homer/maketagdirectory/**
