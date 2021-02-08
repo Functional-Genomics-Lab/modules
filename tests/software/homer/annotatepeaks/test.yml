@@ -1,6 +1,7 @@
 - name: homer annotatepeaks
   command: nextflow run ./tests/software/homer/annotatepeaks -entry test_homer_annotatepeaks -c tests/config/nextflow.config
-  exit_code: 1 # FIXME passing the wrong args
   tags:
     - homer
     - homer_annotatepeaks
+  files:
+    - path: output/homer/test.annotatePeaks.txt

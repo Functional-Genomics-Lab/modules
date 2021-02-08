@@ -76,6 +76,10 @@ gffread:
   - software/gffread/**
   - tests/software/gffread/**
 
+homer_annotatepeaks:
+  - software/homer/annotatepeaks/**
+  - tests/homer/annotatepeaks/**
+
 minimap2_align:
   - software/minimap2/align/**
   - tests/software/minimap2/align/**
