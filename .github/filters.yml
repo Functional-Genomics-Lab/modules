@@ -84,6 +84,11 @@ homer_maketagdirectory:
   - software/homer/maketagdirectory/**
   - tests/homer/maketagdirectory/**
 
+homer_makeucscfile:
+  - software/homer/maketagdirectory/**
+  - software/homer/makeucscfile/**
+  - tests/homer/makeucscfile/**
+
 minimap2_align:
   - software/minimap2/align/**
   - tests/software/minimap2/align/**
